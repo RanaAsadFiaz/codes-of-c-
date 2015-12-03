@@ -1,0 +1,155 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+	int value;
+	node *next;
+};
+class linkedlist
+{
+private:
+	node *head;
+	node *current;
+	int size;
+	int key;
+public:
+	linkedlist()
+	{
+		head=NULL;
+		size=key=0;
+	}
+	void insert(int val)
+	{
+		if(head==NULL)
+		{
+			head=new node;
+			head->value=val;
+			head->next=NULL;
+			size++;
+			return;
+		}
+		else if(size==1)
+		{
+			head->next=new node;
+			head->next->value=val;
+			head->next->next=NULL;
+			size++;
+			return;
+		}
+		else
+		{
+           current=head;
+		 for(int i=0;i<size-1;i++)
+		 {
+			 current=current->next;
+		 }
+		 current->next=new node;
+		 current->next->value=val;
+		 current->next->next=NULL;
+		 size++;
+	      return;
+		}
+		
+	}
+	void print()
+	{  node *temp;temp=head;
+		while(temp!=NULL)
+		{
+			cout<<endl<<temp->value;
+			temp=temp->next;
+		}
+	}
+};
+ class bucketsort
+ {
+ private:
+	 int *a;
+	 int *b;
+	 linkedlist *l;
+	 int items;
+ public:
+	 bucketsort()
+	 {
+		 cout<<"Enter How many items you wants to add::";
+		 cin>>items;
+		 a=new int[items];
+		 b=new int[items];
+		 l=new linkedlist[10];
+	 }
+	 void insert()
+	 {
+		 for(int i=0;i<items;i++)
+		 {
+			 cin>>a[i];
+		 }
+	 }
+	 void sorting()
+	 {int item;
+		 for(int i=0;i<items;i++)
+		 {
+             int temp=a[i];    
+	while (temp != 0)
+	{
+		item=temp%10;
+		temp /= 10;
+	}
+      if(item==1)
+	 {
+		 l[1].insert(a[i]);
+	 }
+	 else if(item==2)
+      {
+		 l[2].insert(a[i]);
+	 }
+	 else if(item==3)
+	 {
+		 l[3].insert(a[i]);
+	 }
+	 else if(item==4)
+      {
+		 l[4].insert(a[i]);
+	 }
+	 else if(item==5)
+      {
+		 l[5].insert(a[i]);
+	 }
+	 else if(item==6)
+      {
+		 l[6].insert(a[i]);
+	 }
+	 else if(item==7)
+      {
+		 l[7].insert(a[i]);
+	 }
+	  else if(item==8)
+      {
+		 l[8].insert(a[i]);
+	 }
+	  else if(item==9)
+      {
+		 l[9].insert(a[i]);
+	 }
+		 }
+	 }
+	 void print()
+	 {
+		 cout<<"The Sorted Items Are";
+		 for(int i=1;i<10;i++)
+		 {
+			 l[i].print();
+		 }
+	 }
+ };
+int main()
+{
+	cout<<"Welcome to the Bcuket Sort Algorithm!!!!!"<<endl;
+	cout<<"Developed By RANA ASAD FIAZ";
+	bucketsort b1;
+	b1.insert();
+	b1.sorting();
+	b1.print();
+	linkedlist l1;
+	l1.print();
+	system("pause");
+	return 0;
+}
