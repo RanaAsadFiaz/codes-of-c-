@@ -1,0 +1,173 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+struct customer_data
+{
+	char name[20];
+	int id;
+};
+class project
+{
+	public:
+int hotel_management()
+{
+	customer_data c;
+	int room=10;
+	char ch;
+	char ch1;
+	int rooms[10]={1,2,3,4,5,6,7,8,9,10};
+	int hotel[10];
+	int count=0;
+	int num;
+	do
+	{
+		cout<<"ENTER 1 TO ENTER THE DATA:"<<endl;
+		cout<<"ENTER 2 TO SHOW THE DATA OF THE HOTEL:"<<endl;
+		cin>>ch1;
+		system("cls");
+		switch(ch1)
+		{
+	case '1':
+	{
+		cout<<"ENETER THE NAME OF THE CUSTOMER:"<<endl;
+		cin>>c.name;
+		system("cls");
+		cout<<"ENTER THE NIC ID NUMBER OF THE CUSTOMER:"<<endl;
+		cin>>c.id;
+		system("cls");
+		cout<<"enter the room number: "<<endl;
+		cin>>num;
+		system("cls");
+		for(int i=0;i<10;i++)
+		{
+			
+			if(num!=hotel[i])
+			{
+			if(num == rooms[i])
+			{
+				hotel[i] = num;
+				count++;
+				cout<<"room is reserved to MR/MISS "<<c.name<<endl<<"YOUR ID IS :"<<c.id<<endl;
+				cout<<"your room is :"<<hotel[i]<<endl;
+				break;
+		}
+	}
+		else
+		{
+				cout<<"your room is already booked"<<endl;
+				break;
+			}
+		}
+		break;
+	}
+	case '2':
+		{
+			cout<<"THE NUMBER OF ROOMS THAT HAVE BEEN BOOKED =="<<count<<endl;
+			room-=count;
+			cout<<"THE NUMBER OF ROOMS THAT ARE NOT BOOKED YET=="<<room<<endl;
+			break;		
+		}
+		default:
+			{
+				cout<<"THE CASE YOU WANT TO ACCESS IS NOT STORED:"<<endl;
+			}
+}
+		cout<<"ENTER Y TO CONTINUE"<<endl;
+		cin>>ch;
+	}while(ch!='n'&&ch!='N');
+}
+int voting_system()
+{
+	int PMLN=0;
+int PTI=0;
+int PPP=0;
+int IND=0;
+char ch;
+char ch1;
+do
+{
+
+cout<<"IF YOU Want to vote PMLN ENTER 1,ENTER 2 FOR PTI, ENTER 3 FOR PPP,ENTER 4 FOR INDEPENCE PARTY:"<<endl;
+cin>>ch;
+switch(ch)
+{
+		case '1':
+		{
+			cout<<"you have voted for PMLN :"<<endl;
+			PMLN++;
+			system("cls");
+			break;	
+		}
+			case '2':
+		{
+			cout<<"you have voted for PTI :"<<endl;
+			PTI++;
+			system("cls");
+			break;	
+		}
+			case '3':
+		{
+			cout<<"you have voted for PPP :"<<endl;
+			PPP++;
+			system("cls");
+			break;	
+		}
+			case '4':
+		{
+			cout<<"you have voted for IND :"<<endl;
+			IND++;
+			system("cls");
+			break;
+		}
+}
+cout<<"ENTER Y TO VOTE AGAIN AND N TO POSTPOND:"<<endl;
+cin>>ch1;
+}while(ch1!='n'&&ch1!='N');
+cout<<"PMLN VOTES ARE:"<<PMLN<<endl;
+cout<<"PTI VOTES ARE:"<<PTI<<endl;
+cout<<"PPP VOTES ARE:"<<PPP<<endl;
+cout<<"INDEPENCE VOTES ARE:"<<IND<<endl;
+if(PMLN>PTI&&PMLN>PPP&&PMLN>IND)
+{
+	cout<<"PMLN HAS WON THIS ELECTION:"<<endl;
+}
+else if(PTI>PMLN&&PTI>PPP&&PTI>IND)
+{
+	cout<<"PTI HAS WON THIS ELECTION:"<<endl;
+}
+else if(PPP>PTI&&PPP>PMLN&&PPP>IND)
+{
+	cout<<"PPP HAS WON THIS ELECTION:"<<endl;
+}
+else if(IND>PTI&&IND>PPP&&IND>PMLN)
+{
+	cout<<"INDEPENDECE HAS WON THIS ELECTION:"<<endl;
+}
+else if(PMLN==PTI==PPP==IND)
+{
+	cout<<"THE VOTES FOR ALL PARTIES ARE EQUAL:"<<endl;
+}
+}
+};
+int main()
+{
+	project p;
+	char ch2;
+	cout<<"ENTER 1 FOR HOTEL MANAGEMENT:"<<endl;
+	cout<<"ENTER 2 FOR VOTING SYSTEM:"<<endl;
+	cin>>ch2;
+	system ("cls");
+	switch(ch2)
+	{
+		case '1':
+			{
+				p.hotel_management();
+				break;	
+			}
+		case '2':
+			{
+				p.voting_system();
+				break;
+			}
+	}
+}
