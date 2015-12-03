@@ -1,0 +1,125 @@
+#include <iostream>
+#include <conio.h>      // getch()
+#include <windows.h>    // SetConsoleCursorPosition()
+
+using namespace std;
+
+const int space=6;
+const int a = 5;
+int set[3][2]={{25,7},{50,7},{75,7}};
+int hurd[3]={8,5,10};
+int b = 7,check=-1;
+int cleaR[3][2]={{26,7},{51,7},{76,7}};
+
+void goToXY(int x, int y) {
+    COORD coord = { x, y };
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+void clearscreen(int x, int y)
+{
+	
+   HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+   COORD coord = {x,y};
+   SetConsoleCursorPosition(hOutput, coord);
+
+   char buff[] = "   ";
+   WriteConsoleA(hOutput, buff, 3, NULL, NULL);
+}
+bool check_collision()
+{
+		if(b==0 || b==19)
+		{
+			return true;
+		}
+	 if(set[check%3][0]==a && (0>b<=hurd[check%3] || (hurd[check%3]+space)>=b<19))
+		{
+			return true;
+		}
+	return false;
+}
+void print()
+{
+	int y=0;
+	srand(NULL);
+	for(int i=0;i<3;i++)
+	{
+		for(y=0;y<19;y++)
+		{
+			if(y==hurd[i])
+				y+=space;
+			goToXY(set[i][0],y);
+			cout<<"x";
+		}
+		y=0;
+		if(set[i][0]<=5)
+			check++;
+		if(set[i][0]<=0)
+		{
+			hurd[check%3]=rand()%11+1;
+			set[i][0]=75;
+			continue;
+		}
+		set[i][0]--;
+	}
+}
+void clearold()
+{
+	int y=0;
+	for(int i=0;i<3;i++)
+	{
+		for(y=0;y<19;y++)
+		{
+			goToXY(cleaR[i][0],y);
+			cout<<" ";
+		}
+		y=0;
+		if(cleaR[i][0]<=0)
+		{
+			cleaR[i][0]=75;
+			continue;
+		}
+		cleaR[i][0]--;
+	}
+} 
+void FlappyBird(bool key,int presskey)
+{      
+        if (key == true) {
+            goToXY(a, b);
+            cout << " ";
+            if (presskey == 32)
+            {
+                b -= 3;
+            }
+        }
+        goToXY(a, b);
+        cout << "O";
+		Sleep(100);
+		goToXY(a, b);
+        cout << " ";
+		b++;
+}
+int main() 
+{
+    int x = 0, y = 19;
+	for(x=0;x<79;x++)
+	{
+		goToXY(x,y);
+		cout<<"--";
+	}
+    while (true) {
+	clearold();
+	print();
+	if(kbhit()==true&&getch()==32)
+		FlappyBird(true,32);
+	else
+		FlappyBird(false,32);
+	if(check_collision())
+	{
+		goToXY(0,21);
+ 		exit(1);
+	}
+	//Sleep(100);
+    }
+	goToXY(0,21);
+    return 0;
+}               
