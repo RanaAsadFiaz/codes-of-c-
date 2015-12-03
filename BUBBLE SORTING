@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int arr[8];
+	int temp;
+	for(int i=0;i<8;i++)
+	{
+		cout<<"ENTER VALUE:"<<endl;
+		cin>>arr[i];
+	}
+	for(int j=0;j<8;j++)
+	{
+		for(int k=0;k<7;k++)
+		{
+			if(arr[k]>arr[k+1])
+			{
+				temp=arr[k];
+				arr[k]=arr[k+1];
+				arr[k+1]=temp;
+			}
+		}
+	}
+	cout<<"THE VALUES ARE HERE:"<<endl;
+	for(int l=0;l<8;l++)
+	{
+		cout<<arr[l]<<"  ";
+	}
+}
